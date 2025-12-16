@@ -45,4 +45,21 @@ public class UserServiceImpl implements UserService {
 		return selectedUser;
 	}
 
+	@Override
+	public Users selectByUsername(String username) {
+		Users user = userDAO.select(username);
+		return user;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+

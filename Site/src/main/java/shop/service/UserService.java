@@ -9,5 +9,8 @@ public interface UserService {
 	
 	// 로그인
 	public Users login(Users user);
+	
+	// 아이디로 조회
+	public Users selectByUsername(String username);
 
 }

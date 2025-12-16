@@ -7,6 +7,9 @@
 <% 
 	String root = request.getContextPath();
 	pageContext.setAttribute("root", root);
+	
+	String loginId = (String) request.getAttribute("loginId");
+	pageContext.setAttribute("loginId", loginId);
 %>
 <!DOCTYPE html>
 <html>
@@ -17,8 +20,23 @@
 <body>
 	<h1>로그인</h1>
 	<form action="${ root }/login" method="post">
-		<p>아이디 : <input type="text" name="username" id="username" /> </p>
+		<p>아이디 : <input type="text" name="username" id="username" 
+						  value="${ loginId }" /> </p>
 		<p>비밀번호 : <input type="password" name="password" id="password" /> </p>
+		<p>
+			<!-- 아이디 저장 -->
+			<c:if test="${ loginId != null }">
+				<input type="checkbox" name="remember-id" id="remember-id" checked />
+			</c:if>
+			<c:if test="${ loginId == null }">
+				<input type="checkbox" name="remember-id" id="remember-id" />
+			</c:if>
+			<label for="remember-id">아이디 저장</label>
+			
+			<!-- 자동 로그인 -->
+			<input type="checkbox" name="remember-me" id="remember-me" />
+			<label for="remember-me">자동 로그인</label>
+		</p>
 		<p>
 			<input type="submit" value="로그인" /> 
 		</p>
