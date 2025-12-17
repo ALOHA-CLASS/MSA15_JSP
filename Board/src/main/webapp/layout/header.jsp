@@ -20,10 +20,10 @@
 		%>
        	<!-- 비로그인 시 -->
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="${ root }/users/login">로그인</a>
+          <a class="nav-link" aria-current="page" href="${ root }/login">로그인</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="${ root }/users/join">회원가입</a>
+          <a class="nav-link" aria-current="page" href="${ root }/join">회원가입</a>
         </li>
         <li class="nav-item">
         </li>
@@ -43,7 +43,7 @@
 	        <li><a class="dropdown-item" href="${ root }/users/my">마이 페이지</a></li>
 	        <li><a class="dropdown-item" href="${ root }/users/update">회원정보 수정</a></li>
 	        <li><hr class="dropdown-divider"></li>
-	        <li><a class="dropdown-item" href="${ root }/users/logout">로그아웃</a></li>
+	        <li><a class="dropdown-item" href="${ root }/logout">로그아웃</a></li>
 	      </ul>
 	    </div>
         </li>

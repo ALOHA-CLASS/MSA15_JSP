@@ -23,7 +23,7 @@
 						<a href="${ root }/board/list.jsp" class="btn btn-primary btn-lg px-4 me-sm-3">
 							게시글 목록
 						</a>	
-						<a href="${ root }/users/login" class="btn btn-outline-secondary btn-lg px-4">
+						<a href="${ root }/login" class="btn btn-outline-secondary btn-lg px-4">
 							로그인
 						</a>
 					</div>
