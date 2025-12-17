@@ -90,6 +90,29 @@ public class LoginServlet extends HttpServlet {
 		response.addCookie(cookieUsername);
 		// 아이디 저장 끝 ---------------------------------------------------
 		
+		
+		
+		Users user = Users.builder()
+						  .username(username)
+						  .password(password)
+						  .build();
+		boolean result = userService.login(user);
+		
+		// 로그인 실패
+		if( !result ) {
+			response.sendRedirect(root + "/login.jsp?error=true");
+			return;
+		}
+		
+		// 로그인 성공
+		// 회원 조회
+		Users loginUser = userService.selectByUsername(username);
+		loginUser.setPassword(null);
+		// 세션에 사용자 정보 등록
+		HttpSession session = request.getSession();
+		session.setAttribute("loginId", user.getUsername());
+		session.setAttribute("loginUser", loginUser);
+		
 		// 자동 로그인 ---------------------------------------------------
 		String rememberMe = request.getParameter("rememberMe");
 		Cookie cookieRememberMe = new Cookie("rememberMe", "");
@@ -125,26 +148,7 @@ public class LoginServlet extends HttpServlet {
 		response.addCookie(cookieToken);
 		// 자동 로그인 끝 ---------------------------------------------------
 		
-		Users user = Users.builder()
-						  .username(username)
-						  .password(password)
-						  .build();
-		boolean result = userService.login(user);
-		// 로그인 성공
-		if( result ) {
-			// 회원 조회
-			Users loginUser = userService.selectByUsername(username);
-			loginUser.setPassword(null);
-			// 세션에 사용자 정보 등록
-			HttpSession session = request.getSession();
-			session.setAttribute("loginId", user.getUsername());
-			session.setAttribute("loginUser", loginUser);
-			response.sendRedirect(root + "/");
-		} 
-		// 로그인 실패
-		else {
-			response.sendRedirect(root + "/login.jsp?error=true");
-		}
+		response.sendRedirect(root + "/");
 		// [로그인 끝] ##############################################################
 	}
 	
